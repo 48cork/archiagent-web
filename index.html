@@ -7,15 +7,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --terra: #2c1810; --terra-mid: #4a2c1a; --terra-light: #6b3f25;
-    --gold: #c4933f; --gold-light: #e0b86a; --cream: #faf6f0;
-    --cream-dark: #f0e8dc; --text: #1a1208; --text-mid: #4a3828;
-    --text-light: #8a7060; --border: #d4c0a8; --white: #ffffff;
+    --terra: #2c1810;
+    --terra-mid: #4a2c1a;
+    --terra-light: #6b3f25;
+    --gold: #c4933f;
+    --gold-light: #e0b86a;
+    --cream: #faf6f0;
+    --cream-dark: #f0e8dc;
+    --text: #1a1208;
+    --text-mid: #4a3828;
+    --text-light: #8a7060;
+    --border: #d4c0a8;
+    --white: #ffffff;
+    --green: #2d6a4f;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Source Serif 4', Georgia, serif; background: var(--cream); color: var(--text); min-height: 100vh; }
-  #setup-screen { position: fixed; inset: 0; background: var(--terra); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 24px; }
-  .setup-card { background: var(--cream); max-width: 520px; width: 100%; padding: 48px; text-align: center; }
+
+  /* API KEY SETUP SCREEN */
+  #setup-screen {
+    position: fixed; inset: 0; background: var(--terra);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000; padding: 24px;
+  }
+  .setup-card {
+    background: var(--cream); max-width: 520px; width: 100%;
+    padding: 48px; text-align: center;
+  }
   .setup-logo { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--terra); margin-bottom: 4px; }
   .setup-sub { font-size: 11px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 32px; }
   .setup-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 24px 0; }
@@ -26,13 +44,23 @@
   .setup-steps li { font-size: 13px; color: var(--text-mid); margin-bottom: 8px; line-height: 1.6; }
   .setup-steps a { color: var(--gold); }
   .setup-input-wrap { position: relative; margin-bottom: 16px; }
-  .setup-input-wrap input { width: 100%; padding: 14px 16px; border: 1px solid var(--border); font-family: 'Source Serif 4', serif; font-size: 14px; color: var(--text); background: var(--white); outline: none; }
+  .setup-input-wrap input {
+    width: 100%; padding: 14px 16px; border: 1px solid var(--border);
+    font-family: 'Source Serif 4', serif; font-size: 14px; color: var(--text);
+    background: var(--white); outline: none;
+  }
   .setup-input-wrap input:focus { border-color: var(--gold); }
   .setup-input-wrap input::placeholder { color: var(--text-light); font-style: italic; }
-  .btn-setup { width: 100%; padding: 16px; background: var(--terra); color: var(--white); border: none; font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; cursor: pointer; letter-spacing: 1px; transition: background 0.2s; }
+  .btn-setup {
+    width: 100%; padding: 16px; background: var(--terra); color: var(--white);
+    border: none; font-family: 'Playfair Display', serif; font-size: 15px;
+    font-weight: 600; cursor: pointer; letter-spacing: 1px; transition: background 0.2s;
+  }
   .btn-setup:hover { background: var(--terra-mid); }
   .setup-note { font-size: 11px; color: var(--text-light); margin-top: 16px; line-height: 1.6; }
   #setup-error { color: #c0392b; font-size: 12px; margin-top: 8px; display: none; }
+
+  /* MAIN APP */
   #app { display: none; }
   .header { background: var(--terra); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
   .header-inner { max-width: 1100px; margin: 0 auto; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; }
@@ -44,6 +72,7 @@
   .api-status { font-size: 11px; color: #7ecfa0; letter-spacing: 1px; }
   .btn-change-key { font-size: 11px; color: var(--gold-light); background: none; border: 1px solid var(--terra-light); padding: 6px 12px; cursor: pointer; font-family: 'Source Serif 4', serif; letter-spacing: 1px; transition: border-color 0.2s; }
   .btn-change-key:hover { border-color: var(--gold); color: var(--gold); }
+
   .main { max-width: 1100px; margin: 0 auto; padding: 48px 40px; }
   .agents-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
   .agent-tab { background: var(--white); border: 1px solid var(--border); padding: 20px 16px; cursor: pointer; transition: all 0.2s; text-align: center; position: relative; overflow: hidden; }
@@ -100,6 +129,7 @@
 </head>
 <body>
 
+<!-- SETUP SCREEN -->
 <div id="setup-screen">
   <div class="setup-card">
     <div class="setup-logo">ArchiAgent</div>
@@ -124,6 +154,7 @@
   </div>
 </div>
 
+<!-- MAIN APP -->
 <div id="app">
   <header class="header">
     <div class="header-inner">
@@ -140,6 +171,7 @@
       </div>
     </div>
   </header>
+
   <main class="main">
     <nav class="agents-nav">
       <div class="agent-tab active" onclick="switchAgent('proposal')">
@@ -163,154 +195,256 @@
         <div class="agent-desc">Documentação para prefeitura</div>
       </div>
     </nav>
+
     <div class="panel agent-panel active" id="panel-proposal">
       <div class="form-card">
         <h2>Agente de Propostas</h2>
         <p class="subtitle">Propostas comerciais e contratos de honorários conforme o CAU/BR</p>
         <div class="divider"></div>
-        <div class="form-group"><label>Tipo de Projeto</label><select id="pr-tipo"><option value="">Selecione...</option><option>Residência Unifamiliar</option><option>Residência Multifamiliar</option><option>Projeto Comercial</option><option>Projeto Industrial</option><option>Reforma e Ampliação</option><option>Interiores</option><option>Projeto Institucional</option><option>Urbanismo e Paisagismo</option></select></div>
-        <div class="form-group"><label>Nome do Cliente</label><input type="text" id="pr-cliente" placeholder="Ex: João e Maria Silva" /></div>
-        <div class="form-group"><label>Localização</label><input type="text" id="pr-local" placeholder="Ex: Campina Grande/PB" /></div>
-        <div class="form-group"><label>Área Estimada (m²)</label><input type="text" id="pr-area" placeholder="Ex: 180 m²" /></div>
-        <div class="form-group"><label>Escopo dos Serviços</label><textarea id="pr-escopo" placeholder="Ex: Projeto arquitetônico completo, aprovação em prefeitura, acompanhamento de obra..."></textarea></div>
-        <div class="form-group"><label>Prazo Estimado</label><input type="text" id="pr-prazo" placeholder="Ex: 60 dias para projeto executivo" /></div>
+        <div class="form-group">
+          <label>Tipo de Projeto</label>
+          <select id="pr-tipo">
+            <option value="">Selecione...</option>
+            <option>Residência Unifamiliar</option>
+            <option>Residência Multifamiliar</option>
+            <option>Projeto Comercial</option>
+            <option>Projeto Industrial</option>
+            <option>Reforma e Ampliação</option>
+            <option>Interiores</option>
+            <option>Projeto Institucional</option>
+            <option>Urbanismo e Paisagismo</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nome do Cliente</label>
+          <input type="text" id="pr-cliente" placeholder="Ex: João e Maria Silva" />
+        </div>
+        <div class="form-group">
+          <label>Localização</label>
+          <input type="text" id="pr-local" placeholder="Ex: Campina Grande/PB" />
+        </div>
+        <div class="form-group">
+          <label>Área Estimada (m²)</label>
+          <input type="text" id="pr-area" placeholder="Ex: 180 m²" />
+        </div>
+        <div class="form-group">
+          <label>Escopo dos Serviços</label>
+          <textarea id="pr-escopo" placeholder="Ex: Projeto arquitetônico completo, aprovação em prefeitura, acompanhamento de obra..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Prazo Estimado</label>
+          <input type="text" id="pr-prazo" placeholder="Ex: 60 dias para projeto executivo" />
+        </div>
         <button class="btn-generate" onclick="generate('proposal')">🏛️ Gerar Proposta</button>
       </div>
-      <div class="result-card" id="result-proposal"><div class="result-placeholder"><div class="placeholder-icon">🏛️</div><p>A proposta comercial será<br>exibida aqui após a geração</p></div></div>
+      <div class="result-card" id="result-proposal">
+        <div class="result-placeholder">
+          <div class="placeholder-icon">🏛️</div>
+          <p>A proposta comercial será<br>exibida aqui após a geração</p>
+        </div>
+      </div>
     </div>
+
     <div class="panel agent-panel" id="panel-memorial">
       <div class="form-card">
         <h2>Agente de Memorial</h2>
         <p class="subtitle">Memoriais descritivos e especificações técnicas conforme ABNT</p>
         <div class="divider"></div>
-        <div class="form-group"><label>Tipo de Projeto</label><select id="me-tipo"><option value="">Selecione...</option><option>Residência Unifamiliar</option><option>Edifício Residencial</option><option>Estabelecimento Comercial</option><option>Galpão Industrial</option><option>Escola / Creche</option><option>Reforma</option></select></div>
-        <div class="form-group"><label>Localização e Zoneamento</label><input type="text" id="me-local" placeholder="Ex: Zona Residencial R2, Campina Grande/PB" /></div>
-        <div class="form-group"><label>Área Total Construída</label><input type="text" id="me-area" placeholder="Ex: 220 m²" /></div>
-        <div class="form-group"><label>Sistema Construtivo</label><select id="me-sistema"><option value="">Selecione...</option><option>Alvenaria convencional</option><option>Estrutura metálica</option><option>Concreto armado</option><option>Steel frame</option><option>Wood frame</option><option>Alvenaria estrutural</option></select></div>
-        <div class="form-group"><label>Acabamentos e Materiais</label><textarea id="me-materiais" placeholder="Ex: Piso porcelanato 60x60, paredes em gesso liso, cobertura em telha cerâmica..."></textarea></div>
+        <div class="form-group">
+          <label>Tipo de Projeto</label>
+          <select id="me-tipo">
+            <option value="">Selecione...</option>
+            <option>Residência Unifamiliar</option>
+            <option>Edifício Residencial</option>
+            <option>Estabelecimento Comercial</option>
+            <option>Galpão Industrial</option>
+            <option>Escola / Creche</option>
+            <option>Reforma</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Localização e Zoneamento</label>
+          <input type="text" id="me-local" placeholder="Ex: Zona Residencial R2, Campina Grande/PB" />
+        </div>
+        <div class="form-group">
+          <label>Área Total Construída</label>
+          <input type="text" id="me-area" placeholder="Ex: 220 m²" />
+        </div>
+        <div class="form-group">
+          <label>Sistema Construtivo</label>
+          <select id="me-sistema">
+            <option value="">Selecione...</option>
+            <option>Alvenaria convencional</option>
+            <option>Estrutura metálica</option>
+            <option>Concreto armado</option>
+            <option>Steel frame</option>
+            <option>Wood frame</option>
+            <option>Alvenaria estrutural</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Acabamentos e Materiais</label>
+          <textarea id="me-materiais" placeholder="Ex: Piso porcelanato 60x60, paredes em gesso liso, cobertura em telha cerâmica..."></textarea>
+        </div>
         <button class="btn-generate" onclick="generate('memorial')">📐 Gerar Memorial</button>
       </div>
-      <div class="result-card" id="result-memorial"><div class="result-placeholder"><div class="placeholder-icon">📐</div><p>O memorial descritivo será<br>exibido aqui após a geração</p></div></div>
+      <div class="result-card" id="result-memorial">
+        <div class="result-placeholder">
+          <div class="placeholder-icon">📐</div>
+          <p>O memorial descritivo será<br>exibido aqui após a geração</p>
+        </div>
+      </div>
     </div>
+
     <div class="panel agent-panel" id="panel-presentation">
       <div class="form-card">
         <h2>Agente de Apresentação</h2>
         <p class="subtitle">Narrativas de projeto e textos para apresentação ao cliente</p>
         <div class="divider"></div>
-        <div class="form-group"><label>Tipo de Projeto</label><select id="ap-tipo"><option value="">Selecione...</option><option>Residência contemporânea</option><option>Casa de campo / sítio</option><option>Apartamento</option><option>Escritório / Coworking</option><option>Restaurante / Café</option><option>Loja / Showroom</option><option>Espaço cultural</option></select></div>
-        <div class="form-group"><label>Conceito do Projeto</label><textarea id="ap-conceito" placeholder="Ex: Casa que integra interior e exterior, com ênfase na luz natural e ventilação cruzada..."></textarea></div>
-        <div class="form-group"><label>Diferenciais do Projeto</label><textarea id="ap-diferenciais" placeholder="Ex: Pátio central, materiais naturais, varanda integrada à sala..." style="min-height:80px;"></textarea></div>
-        <div class="form-group"><label>Público / Cliente</label><input type="text" id="ap-publico" placeholder="Ex: Casal jovem com dois filhos, estilo de vida ativo" /></div>
+        <div class="form-group">
+          <label>Tipo de Projeto</label>
+          <select id="ap-tipo">
+            <option value="">Selecione...</option>
+            <option>Residência contemporânea</option>
+            <option>Casa de campo / sítio</option>
+            <option>Apartamento</option>
+            <option>Escritório / Coworking</option>
+            <option>Restaurante / Café</option>
+            <option>Loja / Showroom</option>
+            <option>Espaço cultural</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Conceito do Projeto</label>
+          <textarea id="ap-conceito" placeholder="Ex: Casa que integra interior e exterior, com ênfase na luz natural e ventilação cruzada..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Diferenciais do Projeto</label>
+          <textarea id="ap-diferenciais" placeholder="Ex: Pátio central, materiais naturais, varanda integrada à sala..." style="min-height:80px;"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Público / Cliente</label>
+          <input type="text" id="ap-publico" placeholder="Ex: Casal jovem com dois filhos, estilo de vida ativo" />
+        </div>
         <button class="btn-generate" onclick="generate('presentation')">🎨 Gerar Apresentação</button>
       </div>
-      <div class="result-card" id="result-presentation"><div class="result-placeholder"><div class="placeholder-icon">🎨</div><p>O texto de apresentação será<br>exibido aqui após a geração</p></div></div>
+      <div class="result-card" id="result-presentation">
+        <div class="result-placeholder">
+          <div class="placeholder-icon">🎨</div>
+          <p>O texto de apresentação será<br>exibido aqui após a geração</p>
+        </div>
+      </div>
     </div>
+
     <div class="panel agent-panel" id="panel-permit">
       <div class="form-card">
         <h2>Agente de Aprovação</h2>
         <p class="subtitle">Documentação para aprovação de projetos na prefeitura</p>
         <div class="divider"></div>
-        <div class="form-group"><label>Município</label><input type="text" id="pe-municipio" placeholder="Ex: Campina Grande/PB" /></div>
-        <div class="form-group"><label>Tipo de Projeto</label><select id="pe-tipo"><option value="">Selecione...</option><option>Construção nova residencial</option><option>Construção nova comercial</option><option>Reforma com ampliação</option><option>Reforma sem ampliação</option><option>Regularização de obra</option><option>Demolição</option></select></div>
-        <div class="form-group"><label>Dados do Lote</label><input type="text" id="pe-lote" placeholder="Ex: Lote 10, Quadra 5, Área 360 m², Testada 12m" /></div>
-        <div class="form-group"><label>Área Construída</label><input type="text" id="pe-area" placeholder="Ex: 180 m² — Térreo + Superior" /></div>
-        <div class="form-group"><label>Zoneamento</label><input type="text" id="pe-zoneamento" placeholder="Ex: Zona Residencial R2" /></div>
-        <div class="form-group"><label>Observações Especiais</label><textarea id="pe-obs" placeholder="Ex: Terreno em aclive, APP próxima, imóvel tombado..." style="min-height:80px;"></textarea></div>
+        <div class="form-group">
+          <label>Município</label>
+          <input type="text" id="pe-municipio" placeholder="Ex: Campina Grande/PB" />
+        </div>
+        <div class="form-group">
+          <label>Tipo de Projeto</label>
+          <select id="pe-tipo">
+            <option value="">Selecione...</option>
+            <option>Construção nova residencial</option>
+            <option>Construção nova comercial</option>
+            <option>Reforma com ampliação</option>
+            <option>Reforma sem ampliação</option>
+            <option>Regularização de obra</option>
+            <option>Demolição</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Dados do Lote</label>
+          <input type="text" id="pe-lote" placeholder="Ex: Lote 10, Quadra 5, Área 360 m², Testada 12m" />
+        </div>
+        <div class="form-group">
+          <label>Área Construída</label>
+          <input type="text" id="pe-area" placeholder="Ex: 180 m² — Térreo + Superior" />
+        </div>
+        <div class="form-group">
+          <label>Zoneamento</label>
+          <input type="text" id="pe-zoneamento" placeholder="Ex: Zona Residencial R2" />
+        </div>
+        <div class="form-group">
+          <label>Observações Especiais</label>
+          <textarea id="pe-obs" placeholder="Ex: Terreno em aclive, APP próxima, imóvel tombado..." style="min-height:80px;"></textarea>
+        </div>
         <button class="btn-generate" onclick="generate('permit')">📋 Gerar Documentação</button>
       </div>
-      <div class="result-card" id="result-permit"><div class="result-placeholder"><div class="placeholder-icon">📋</div><p>A documentação para aprovação<br>será exibida aqui após a geração</p></div></div>
+      <div class="result-card" id="result-permit">
+        <div class="result-placeholder">
+          <div class="placeholder-icon">📋</div>
+          <p>A documentação para aprovação<br>será exibida aqui após a geração</p>
+        </div>
+      </div>
     </div>
   </main>
   <footer class="footer">ArchiAgent · Assistente Inteligente para Arquitetos · Desenvolvido para arquitetos brasileiros</footer>
 </div>
 
 <script>
-  let GEMINI_KEY = '';
   const agents = ['proposal', 'memorial', 'presentation', 'permit'];
 
-  function activateApp() {
-    const key = document.getElementById('api-key-input').value.trim();
-    if (!key.startsWith('AIza') || key.length < 30) {
-      document.getElementById('setup-error').style.display = 'block';
-      return;
-    }
-    GEMINI_KEY = key;
-    sessionStorage.setItem('archiagent_key', key);
+  // Esconde tela de setup e mostra app direto
+  window.onload = function() {
     document.getElementById('setup-screen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
-  }
-
-  function changeKey() {
-    sessionStorage.removeItem('archiagent_key');
-    GEMINI_KEY = '';
-    document.getElementById('api-key-input').value = '';
-    document.getElementById('setup-error').style.display = 'none';
-    document.getElementById('setup-screen').style.display = 'flex';
-    document.getElementById('app').style.display = 'none';
-  }
-
-  window.onload = function() {
-    const saved = sessionStorage.getItem('archiagent_key');
-    if (saved) {
-      GEMINI_KEY = saved;
-      document.getElementById('setup-screen').style.display = 'none';
-      document.getElementById('app').style.display = 'block';
-    }
-    document.getElementById('api-key-input').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') activateApp();
-    });
   };
 
   function switchAgent(name) {
     agents.forEach((a, i) => {
       document.querySelectorAll('.agent-tab')[i].classList.remove('active');
-      document.getElementById('panel-' + a).classList.remove('active');
+      document.getElementById(`panel-${a}`).classList.remove('active');
     });
     const idx = agents.indexOf(name);
     document.querySelectorAll('.agent-tab')[idx].classList.add('active');
-    document.getElementById('panel-' + name).classList.add('active');
+    document.getElementById(`panel-${name}`).classList.add('active');
   }
 
   function buildPrompt(type) {
-    if (type === 'proposal') return 'Você é um especialista em arquitetura no Brasil. Elabore uma proposta comercial completa e profissional em português.\n\nTipo: ' + document.getElementById('pr-tipo').value + '\nCliente: ' + document.getElementById('pr-cliente').value + '\nLocalização: ' + document.getElementById('pr-local').value + '\nÁrea: ' + document.getElementById('pr-area').value + '\nEscopo: ' + document.getElementById('pr-escopo').value + '\nPrazo: ' + document.getElementById('pr-prazo').value + '\n\nInclua: apresentação profissional, escopo detalhado, etapas do projeto, cronograma, honorários baseados na tabela CAU/BR, condições de pagamento, validade e termos de contrato.';
-    if (type === 'memorial') return 'Você é um especialista em documentação técnica de arquitetura no Brasil. Elabore um memorial descritivo completo conforme normas ABNT em português.\n\nTipo: ' + document.getElementById('me-tipo').value + '\nLocalização: ' + document.getElementById('me-local').value + '\nÁrea: ' + document.getElementById('me-area').value + '\nSistema: ' + document.getElementById('me-sistema').value + '\nMateriais: ' + document.getElementById('me-materiais').value + '\n\nInclua: descrição geral, implantação, sistema estrutural, instalações elétricas e hidráulicas, acabamentos, acessibilidade (NBR 9050), segurança contra incêndio e normas aplicáveis.';
-    if (type === 'presentation') return 'Você é um especialista em comunicação de arquitetura no Brasil. Crie textos de apresentação profissionais e envolventes em português.\n\nTipo: ' + document.getElementById('ap-tipo').value + '\nConceito: ' + document.getElementById('ap-conceito').value + '\nDiferenciais: ' + document.getElementById('ap-diferenciais').value + '\nCliente/Público: ' + document.getElementById('ap-publico').value + '\n\nCrie: texto conceitual (2-3 parágrafos), descrição dos ambientes principais, aspectos de sustentabilidade e inovação, benefícios para o cliente, texto para prancha de apresentação e sugestão de legenda para Instagram/Behance.';
-    if (type === 'permit') return 'Você é um especialista em aprovação de projetos em prefeituras brasileiras. Prepare a documentação completa em português.\n\nMunicípio: ' + document.getElementById('pe-municipio').value + '\nTipo: ' + document.getElementById('pe-tipo').value + '\nLote: ' + document.getElementById('pe-lote').value + '\nÁrea Construída: ' + document.getElementById('pe-area').value + '\nZoneamento: ' + document.getElementById('pe-zoneamento').value + '\nObservações: ' + document.getElementById('pe-obs').value + '\n\nGere: requerimento formal dirigido à prefeitura, checklist completo de documentos necessários, quadro de áreas conforme NBR 12721, verificação de parâmetros urbanísticos e carta de encaminhamento formal.';
+    if (type === 'proposal') return `Você é um especialista em arquitetura no Brasil. Elabore uma proposta comercial completa e profissional em português.\n\nTipo: ${document.getElementById('pr-tipo').value}\nCliente: ${document.getElementById('pr-cliente').value}\nLocalização: ${document.getElementById('pr-local').value}\nÁrea: ${document.getElementById('pr-area').value}\nEscopo: ${document.getElementById('pr-escopo').value}\nPrazo: ${document.getElementById('pr-prazo').value}\n\nInclua: apresentação profissional, escopo detalhado, etapas do projeto, cronograma, honorários baseados na tabela CAU/BR, condições de pagamento, validade e termos de contrato.`;
+    if (type === 'memorial') return `Você é um especialista em documentação técnica de arquitetura no Brasil. Elabore um memorial descritivo completo conforme normas ABNT em português.\n\nTipo: ${document.getElementById('me-tipo').value}\nLocalização: ${document.getElementById('me-local').value}\nÁrea: ${document.getElementById('me-area').value}\nSistema: ${document.getElementById('me-sistema').value}\nMateriais: ${document.getElementById('me-materiais').value}\n\nInclua: descrição geral, implantação, sistema estrutural, instalações elétricas e hidráulicas, acabamentos, acessibilidade (NBR 9050), segurança contra incêndio e normas aplicáveis.`;
+    if (type === 'presentation') return `Você é um especialista em comunicação de arquitetura no Brasil. Crie textos de apresentação profissionais e envolventes em português.\n\nTipo: ${document.getElementById('ap-tipo').value}\nConceito: ${document.getElementById('ap-conceito').value}\nDiferenciais: ${document.getElementById('ap-diferenciais').value}\nCliente/Público: ${document.getElementById('ap-publico').value}\n\nCrie: texto conceitual (2-3 parágrafos), descrição dos ambientes principais, aspectos de sustentabilidade e inovação, benefícios para o cliente, texto para prancha de apresentação e sugestão de legenda para Instagram/Behance.`;
+    if (type === 'permit') return `Você é um especialista em aprovação de projetos em prefeituras brasileiras. Prepare a documentação completa em português.\n\nMunicípio: ${document.getElementById('pe-municipio').value}\nTipo: ${document.getElementById('pe-tipo').value}\nLote: ${document.getElementById('pe-lote').value}\nÁrea Construída: ${document.getElementById('pe-area').value}\nZoneamento: ${document.getElementById('pe-zoneamento').value}\nObservações: ${document.getElementById('pe-obs').value}\n\nGere: requerimento formal dirigido à prefeitura, checklist completo de documentos necessários, quadro de áreas conforme NBR 12721, verificação de parâmetros urbanísticos (taxa de ocupação, coeficiente de aproveitamento, afastamentos) e carta de encaminhamento formal.`;
   }
 
   async function generate(type) {
-    const resultCard = document.getElementById('result-' + type);
-    const btn = document.querySelector('#panel-' + type + ' .btn-generate');
-    resultCard.innerHTML = '<div class="loading"><div class="loading-bars"><div class="loading-bar"></div><div class="loading-bar"></div><div class="loading-bar"></div><div class="loading-bar"></div><div class="loading-bar"></div></div><p>Processando com inteligência artificial...</p></div>';
+    const resultCard = document.getElementById(`result-${type}`);
+    const btn = document.querySelector(`#panel-${type} .btn-generate`);
+    resultCard.innerHTML = `<div class="loading"><div class="loading-bars"><div class="loading-bar"></div><div class="loading-bar"></div><div class="loading-bar"></div><div class="loading-bar"></div><div class="loading-bar"></div></div><p>Processando com inteligência artificial...</p></div>`;
     btn.disabled = true;
     try {
       const response = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text: buildPrompt(type) }] }], generationConfig: { temperature: 0.7, maxOutputTokens: 4000 } })
+        body: JSON.stringify({ prompt: buildPrompt(type) })
       });
       const data = await response.json();
-      if (data.error) throw new Error(data.error.message);
-      const text = data.candidates[0].content.parts[0].text;
+      if (data.error) throw new Error(data.error);
+      const text = data.result;
       const labels = { proposal: 'Proposta Comercial Gerada', memorial: 'Memorial Descritivo Gerado', presentation: 'Texto de Apresentação Gerado', permit: 'Documentação para Aprovação Gerada' };
-      resultCard.innerHTML = '<div class="result-header"><h3>' + labels[type] + '</h3><div class="result-actions"><button class="btn-action" onclick="copyResult(\'' + type + '\')">Copiar</button><button class="btn-action" onclick="downloadResult(\'' + type + '\')">Baixar .txt</button></div></div><div class="divider"></div><div class="result-content" id="content-' + type + '">' + text + '</div>';
+      resultCard.innerHTML = `<div class="result-header"><h3>${labels[type]}</h3><div class="result-actions"><button class="btn-action" onclick="copyResult('${type}')">Copiar</button><button class="btn-action" onclick="downloadResult('${type}')">Baixar .txt</button></div></div><div class="divider"></div><div class="result-content" id="content-${type}">${text}</div>`;
     } catch (err) {
       const msg = err.message.includes('API_KEY') ? 'Chave de API inválida ou expirada. Clique em "Trocar Chave" para inserir uma nova.' : err.message;
-      resultCard.innerHTML = '<div class="result-placeholder"><div class="placeholder-icon">⚠️</div><p>' + msg + '</p></div>';
+      resultCard.innerHTML = `<div class="result-placeholder"><div class="placeholder-icon">⚠️</div><p>${msg}</p></div>`;
     } finally { btn.disabled = false; }
   }
 
   function copyResult(type) {
-    const c = document.getElementById('content-' + type);
-    if (c) { navigator.clipboard.writeText(c.innerText); alert('✓ Texto copiado!'); }
+    const c = document.getElementById(`content-${type}`);
+    if (c) { navigator.clipboard.writeText(c.innerText); alert('✓ Texto copiado para a área de transferência!'); }
   }
 
   function downloadResult(type) {
-    const c = document.getElementById('content-' + type);
+    const c = document.getElementById(`content-${type}`);
     if (!c) return;
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([c.innerText], { type: 'text/plain;charset=utf-8' }));
-    a.download = 'archiagent-' + type + '-' + Date.now() + '.txt';
+    a.download = `archiagent-${type}-${Date.now()}.txt`;
     a.click();
   }
 </script>
